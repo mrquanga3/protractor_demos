@@ -13,7 +13,8 @@
     "fs-extra": "^9.0.0",
     "jasmine-reporters": "^2.3.2",
     "protractor": "^5.4.4",
-    "protractor-html-reporter-2": "^1.0.4"
+    "protractor-html-reporter-2": "^1.0.4",
+    "protractor-jasmine2-html-reporter": "0.0.7"
   },
   "dependencies": {
     "jasmine-spec-reporter": "^5.0.2"

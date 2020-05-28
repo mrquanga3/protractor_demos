@@ -1,6 +1,6 @@
 exports.config = {
     directConnect: true,
-    seleniumAddress: 'http://localhost:4444/wd/hub',
+    //seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['tests/todo-spec.js'],
     multiCapabilities: [
         {
@@ -29,7 +29,7 @@ exports.config = {
         jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({
             consolidateAll: true,
             filePrefix: 'guitest-xmloutput',
-            savePath: '.'
+            savePath: './reports/'
         }));
         //Getting screenshots
         var fs = require('fs-extra');
@@ -50,6 +50,14 @@ exports.config = {
                 }
             }
         });
+
+        var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
+        jasmine.getEnv().addReporter(
+            new Jasmine2HtmlReporter({
+                savePath: './report2/screenshots'
+            })
+        );
+
     },
     onComplete: function () {
         //Getting HTML report
@@ -71,7 +79,21 @@ exports.config = {
                 screenshotsOnlyOnFailure: true,
                 testPlatform: platform
             };
-            new HTMLReport().from('guitest-xmloutput.xml', testConfig);
+            new HTMLReport().from('./reports/guitest-xmloutput.xml', testConfig);
         });
-    }
+    },
+    /*plugins: [{
+        package: './node_modules/jasmine2-protractor-utils',
+        disableHTMLReport: false,
+        disableScreenshot: false,
+        screenshotPath: './reports/screenshots',
+        screenshotOnExpectFailure: true,
+        screenshotOnSpecFailure: true,
+        clearFoldersBeforeTest: true,
+        htmlReportDir: './reports/htmlReports',
+        failTestOnErrorLog: {
+            failTestOnErrorLogLevel: 900,
+            excludeKeywords: ['keyword1', 'keyword2']
+        }
+    }]*/
 };
