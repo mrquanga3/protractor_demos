@@ -1,0 +1,15 @@
+{
+  "name": "ProtractorDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "protractor conf.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "protractor": "^5.4.4"
+  }
+}
