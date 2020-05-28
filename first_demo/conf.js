@@ -57,7 +57,8 @@ exports.config = {
         var Jasmine2HtmlReporter = require('protractor-jasmine2-html-reporter');
         jasmine.getEnv().addReporter(
             new Jasmine2HtmlReporter({
-                savePath: './report2/screenshots'
+                savePath: './report2',
+                screenshotsFolder: 'screenshots',
             })
         );
         return new Promise(function (fulfill, reject) {
@@ -107,7 +108,7 @@ exports.config = {
                 reportTitle: 'Protractor Test Execution Report',
                 outputPath: './reports/',
                 outputFilename: 'ProtractorTestReport',
-                screenshotPath: './screenshots',
+                screenshotPath: './screenshots/',
                 testBrowser: browserName,
                 browserVersion: browserVersion,
                 modifiedSuiteName: false,
