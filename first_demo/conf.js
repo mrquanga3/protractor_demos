@@ -60,6 +60,38 @@ exports.config = {
                 savePath: './report2/screenshots'
             })
         );
+        return new Promise(function (fulfill, reject) {
+            browser.getCapabilities().then(function (value) {
+                reportName = 'protractor-report-' + '_' + value.get('browserName') + '_' + Math.floor(Math.random() * 1E16);
+                jasmine.getEnv().addReporter(
+                    new Jasmine2HtmlReporter({
+                        savePath: __dirname + '/consolidated_report',
+                        docTitle: 'Web UI Test Report',
+                        screenshotsFolder: '/image',
+                        //takeScreenshots: true,
+                        takeScreenshotsOnlyOnFailures: true,
+                        consolidate: true,
+                        consolidateAll: true,
+                        preserveDirectory: true,
+                        //cleanDirectory: false,
+                        //fixedScreenshotName: true,
+                        fileName: "my-report.html",
+                        fileNamePrefix: reportName
+                    })
+                );
+                fulfill();
+            });
+        });
+
+    },
+    afterLaunch: function afterLaunch() {
+        var fs = require('fs');
+        var output = '';
+        fs.readdirSync('consolidated_report/').forEach(function (file) {
+            if (!(fs.lstatSync('consolidated_report/' + file).isDirectory()))
+                output = output + fs.readFileSync('consolidated_report/' + file);
+        });
+        fs.writeFileSync('consolidated_report/ConsolidatedReport.html', output, 'utf8');
 
     },
     onComplete: function () {
