@@ -4,13 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "protractor conf.js"
+    "pretest": "rm -rf allure-report",
+    "test": "protractor conf.js",
+    "posttest": "allure generate allure-reports --clean -o allure-report || true"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "allure-commandline": "^2.13.0",
     "fs-extra": "^9.0.0",
+    "jasmine-allure-reporter": "^1.0.2",
     "jasmine-reporters": "^2.3.2",
     "protractor": "^5.4.4",
     "protractor-html-reporter-2": "^1.0.4",

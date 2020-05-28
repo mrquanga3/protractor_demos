@@ -61,7 +61,7 @@ exports.config = {
                 screenshotsFolder: 'screenshots',
             })
         );
-        return new Promise(function (fulfill, reject) {
+        new Promise(function (fulfill, reject) {
             browser.getCapabilities().then(function (value) {
                 reportName = 'protractor-report-' + '_' + value.get('browserName') + '_' + Math.floor(Math.random() * 1E16);
                 jasmine.getEnv().addReporter(
@@ -83,6 +83,10 @@ exports.config = {
                 fulfill();
             });
         });
+        var AllureReporter = require('jasmine-allure-reporter');
+        jasmine.getEnv().addReporter(new AllureReporter({
+            resultsDir: 'allure-reports'
+        }));
 
     },
     afterLaunch: function afterLaunch() {
