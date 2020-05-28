@@ -1,7 +1,10 @@
 exports.config = {
     directConnect: true,
     //seleniumAddress: 'http://localhost:4444/wd/hub',
-    specs: ['tests/todo-spec.js'],
+    specs: [
+        'tests/todo-spec.js',
+        'tests/pages/test_home_page.js'
+    ],
     multiCapabilities: [
         {
             'browserName': 'firefox',
@@ -21,7 +24,7 @@ exports.config = {
         const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
         jasmine.getEnv().addReporter(new SpecReporter({
             spec: {
-                displayStacktrace: true
+                displayStacktrace: 'pretty',
             }
         }));
         //Getting XML report
@@ -81,6 +84,9 @@ exports.config = {
             };
             new HTMLReport().from('./reports/guitest-xmloutput.xml', testConfig);
         });
+    },
+    jasmineNodeOpts: {
+        showColors: true, // Use colors in the command line report.
     },
     /*plugins: [{
         package: './node_modules/jasmine2-protractor-utils',
