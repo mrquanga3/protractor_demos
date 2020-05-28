@@ -83,6 +83,7 @@ exports.config = {
                 fulfill();
             });
         });
+        //note: Run allure serve allure-reports/ to see report
         var AllureReporter = require('jasmine-allure-reporter');
         jasmine.getEnv().addReporter(new AllureReporter({
             resultsDir: 'allure-reports'
