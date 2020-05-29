@@ -89,6 +89,14 @@ exports.config = {
             resultsDir: 'allure-reports'
         }));
 
+        var Jasmine2HtmlCliReporter = require('protractor-jasmine2-html-cli-reporter');
+        jasmine.getEnv().addReporter(
+            new Jasmine2HtmlCliReporter({
+                savePath: 'report3',
+                screenshotsFolder: '.'
+            })
+        );
+
     },
     afterLaunch: function afterLaunch() {
         var fs = require('fs');
