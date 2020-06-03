@@ -2,8 +2,9 @@ exports.config = {
     directConnect: true,
     //seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: [
-        'tests/todo-spec.js',
-        'tests/pages/test_home_page.js'
+        './tests/list_element.js',
+        //'tests/todo-spec.js',
+        //'tests/pages/test_home_page.js'
     ],
     multiCapabilities: [
         {
